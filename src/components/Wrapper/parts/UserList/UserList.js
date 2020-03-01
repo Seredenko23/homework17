@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './UserList.css'
 import ListGroup from "react-bootstrap/ListGroup";
-import { getUsers } from "../../service/user";
+import { getUsers } from "../../../../service/user";
 import User from "./parts/user/User";
 
 class UserList extends Component {
@@ -22,8 +22,13 @@ class UserList extends Component {
     return (
       <ListGroup>
         { this.state.users.map(user => {
-          return (<User key={user.id} user={user}/>)
-        }) }
+          return (
+            <User key={user.id}
+                  user={user}
+                  handler={this.props.handler}
+            />)
+          })
+        }
       </ListGroup>
     );
   }

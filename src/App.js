@@ -1,12 +1,15 @@
 import React from 'react';
 import './App.css';
-import UserList from "./components/UserList/UserList";
+import Container from "react-bootstrap/Container";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Wrapper from "./components/Wrapper/Wrapper";
 
 function App() {
   return (
     <div className="App">
-      <UserList/>
+      <Container>
+        <Wrapper />
+      </Container>
     </div>
   );
 }

@@ -6,6 +6,13 @@ router.get("/post", async (req, res) => {
   res.send(JSON.parse(data))
 });
 
+router.get("/post/:id", async (req, res) => {
+  let data = await fs.readFileSync('D:/geekhub/homework17/server/data/post.json');
+  data = JSON.parse(data);
+  data = data.filter(post => post.userId === +req.params.id)
+  res.send(data)
+});
+
 router.post("/post", async (req, res) => {
   let data = await fs.readFileSync('D:/geekhub/homework17/server/data/post.json');
   data = JSON.parse(data);

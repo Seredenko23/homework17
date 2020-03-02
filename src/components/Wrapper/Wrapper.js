@@ -12,14 +12,33 @@ class Wrapper extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      inputType: 'user',
+      currentPost: {},
+      currentUser: {},
       posts: []
     }
+  }
+
+  setCurrentPost = (post) => {
+    this.setState({
+      inputType: "post",
+      currentPost: post
+    })
+  }
+
+  setCurrentUser = (user) => {
+    this.setState({
+      inputType: "user",
+      currentUser: user
+    })
   }
 
   getPosts = (userId) => {
     getPostsByUserId(userId)
       .then(posts => {
-        this.setState({posts: posts})
+        this.setState({
+          posts: posts
+        })
       })
   };
 
@@ -28,17 +47,24 @@ class Wrapper extends Component {
       <Container>
         <Row>
           <Col lg>
-            <UserList handler={this.getPosts}/>
+            <UserList getPosts={this.getPosts}
+                      setCurrentUser={this.setCurrentUser}
+            />
           </Col>
           <Col lg>
             <PostList posts={this.state.posts}
                       getPosts={this.getPosts}
+                      setCurrentPost={this.setCurrentPost}
             />
           </Col>
         </Row>
         <Row>
           <Col>
-            <PostInput/>
+            <PostInput user={this.state.currentUser}
+                       currentPost={this.state.currentPost}
+                       getPosts={this.getPosts}
+                       type={this.state.inputType}
+            />
           </Col>
         </Row>
       </Container>

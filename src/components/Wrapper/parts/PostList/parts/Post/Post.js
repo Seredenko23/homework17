@@ -24,6 +24,11 @@ class Post extends Component {
         >
           X
         </Button>
+        <Button variant={'warning'}
+                onClick={() => {this.props.setCurrentPost(this.props.post)}}
+        >
+          Redact
+        </Button>
       </ListGroup.Item>
     );
   }

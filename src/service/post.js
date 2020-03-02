@@ -1,23 +1,23 @@
 import { BASE_URL } from "../config/config";
 
 export async function getPosts() {
-  const users = await fetch(`${BASE_URL}/post`)
+  const posts = await fetch(`${BASE_URL}/post`)
 
-  if(users.status >= 400 && users.status <= 600) throw Error('Bad response');
+  if(posts.status >= 400 && posts.status <= 600) throw Error('Bad response');
 
-  return await users.json()
+  return await posts.json()
 }
 
 export async function getPostsByUserId(userId) {
-  const users = await fetch(`${BASE_URL}/post/${userId}`)
+  const posts = await fetch(`${BASE_URL}/post/${userId}`)
 
-  if(users.status >= 400 && users.status <= 600) throw Error('Bad response');
+  if(posts.status >= 400 && posts.status <= 600) throw Error('Bad response');
 
-  return await users.json()
+  return await posts.json()
 }
 
 export async function createPost(post) {
-  const users = await fetch(`${BASE_URL}/post`, {
+  const posts = await fetch(`${BASE_URL}/post`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -25,33 +25,34 @@ export async function createPost(post) {
     body: JSON.stringify(post),
   });
 
-  if(users.status >= 400 && users.status <= 600) throw Error('Bad response');
+  if(posts.status >= 400 && posts.status <= 600) throw Error('Bad response');
 
-  return await users.json()
+  return await posts.json()
 }
 
 export async function deletePost(postId) {
-  const users = await fetch(`${BASE_URL}/post/${postId}`, {
+  const posts = await fetch(`${BASE_URL}/post/${postId}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     }
   });
 
-  if(users.status >= 400 && users.status <= 600) throw Error('Bad response');
+  if(posts.status >= 400 && posts.status <= 600) throw Error('Bad response');
 
-  return await users.json()
+  return await posts.json()
 }
 
-export async function changePost(postId) {
-  const users = await fetch(`${BASE_URL}/post/${postId}`, {
+export async function changePost(postId, changes) {
+  const posts = await fetch(`${BASE_URL}/post/${postId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-    }
+    },
+    body: JSON.stringify(changes)
   });
 
-  if(users.status >= 400 && users.status <= 600) throw Error('Bad response');
+  if(posts.status >= 400 && posts.status <= 600) throw Error('Bad response');
 
-  return await users.json()
+  return await posts.json()
 }

@@ -12,6 +12,11 @@ class UserList extends Component {
     }
   }
 
+  handler = async (userId, user) => {
+    await this.props.getPosts(userId);
+    await this.props.setCurrentUser(user);
+  }
+
   componentDidMount() {
     getUsers().then(users => {
       this.setState({users: users})
@@ -25,7 +30,7 @@ class UserList extends Component {
           return (
             <User key={user.id}
                   user={user}
-                  handler={this.props.handler}
+                  handler={this.handler}
             />)
           })
         }

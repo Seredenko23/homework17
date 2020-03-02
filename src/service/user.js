@@ -35,12 +35,13 @@ export async function deleteUser(userId) {
   return await users.json()
 }
 
-export async function changeUser(userId) {
+export async function changeUser(userId, user) {
   const users = await fetch(`${BASE_URL}/user/${userId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-    }
+    },
+    body: JSON.stringify(user)
   });
 
   if(users.status >= 400 && users.status <= 600) throw Error('Bad response');

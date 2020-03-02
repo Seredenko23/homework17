@@ -10,7 +10,7 @@ class User extends Component {
   render() {
     return (
       <ListGroup.Item action
-                      onClick={() => {this.props.handler(this.props.user.id)}}
+                      onClick={() => {this.props.handler(this.props.user.id, this.props.user)}}
       >
         {this.props.user.username}
       </ListGroup.Item>

@@ -11,6 +11,7 @@ class PostList extends Component {
             <Post key={post.id}
                   post={post}
                   getPosts={this.props.getPosts}
+                  setCurrentPost={this.props.setCurrentPost}
             />)
           })
         }
